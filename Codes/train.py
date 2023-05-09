@@ -2,9 +2,10 @@
 
 import argparse
 import os
-import matplotlib.pyplot as plt
 from utils.data_preprocess import load_data, standardize_features, train_test_split
 from utils.active_learning import run_active_learning
+import torch
+import numpy as np
 
 
 if __name__ == '__main__':
@@ -35,42 +36,42 @@ if __name__ == '__main__':
     for trial_num in range(args.trials):
         model,  active_learning_meter = run_active_learning(cycles=args.cycles,\
                                                             initial_training_sample=1,\
-                                                            train_seismic,\
-                                                            test_seismic,\
-                                                            train_labels,\
-                                                            test_labels,\
+                                                            train_seismic=train_seismic,\
+                                                            test_seismic=test_seismic,\
+                                                            train_labels=train_labels,\
+                                                            test_labels=test_labels,\
                                                             sampling_method=args.sampling_method)
         
         # save model and mious in relevant directories
 
         # check if save directory exists for models
-        model_save_directory = 'models/'+args.sampling_method
+        model_save_directory = '../Models/'+args.sampling_method
         if not os.path.exists(model_save_directory):
             os.makedirs(model_save_directory)
           
         # save model    
         torch.save(model.state_dict(),os.path.join(model_save_directory, \
-                   'model_'+args.sampling_method+'_trial_'+str(trial)+'.pth'))
+                   'model_'+args.sampling_method+'_trial_'+str(trial_num)+'.pth'))
         
         # check if save directory exists for training mious
-        train_mious_save_directory = 'results/'+args.sampling_method
+        train_mious_save_directory = '../Results/'+args.sampling_method+'/train'
         if not os.path.exists(train_mious_save_directory):
             os.makedirs(train_mious_save_directory)
             
         # save training mious
         np.save(os.path.join(train_mious_save_directory,\
                              'train_'+args.sampling_method+'_trial_'+\
-                             str(trial)+'.npy'), active_learning_meter.mious[0])
+                             str(trial_num)+'.npy'), active_learning_meter.m_ious[0])
         
         # check if save directory exists for test mious
-        test_mious_save_directory = 'results/'+args.sampling_method
+        test_mious_save_directory = '../Results/'+args.sampling_method+'/test'
         if not os.path.exists(test_mious_save_directory):
             os.makedirs(test_mious_save_directory)
-            
+             
         # save test mious
         np.save(os.path.join(test_mious_save_directory,\
                              'test_'+args.sampling_method+'_trial_'+\
-                             str(trial)+'.npy'), active_learning_meter.mious[1])
+                             str(trial_num)+'.npy'), active_learning_meter.m_ious[1])
         
         
     

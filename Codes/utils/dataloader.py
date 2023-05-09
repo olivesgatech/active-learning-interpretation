@@ -41,8 +41,8 @@ class SectionLoader(Dataset):
 
         section_num = self.indices[index]        
 
-        section = self.seismic[:, section_num, :]
-        label_section = self.label[:, section_num, :]
+        section = self.seismic[:, section_num, :].T
+        label_section = self.label[:, section_num, :].T
 
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -54,4 +54,4 @@ class SectionLoader(Dataset):
     
     def __len__(self):
         """Retrieves total number of training samples"""
-        return self.inds.size
+        return self.indices.size
