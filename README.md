@@ -39,7 +39,7 @@ You should see plots similar to the ones below for training and test splits, res
 
 ## Citations
 Please cite and acknowledge the following works if you benefited from our works: 
-
+```
 @inproceedings{mustafa2021man,
   title={Man-recon: Manifold learning for reconstruction with deep autoencoder for smart seismic interpretation},
   author={Mustafa, Ahmad and AlRegib, Ghassan},
@@ -48,7 +48,8 @@ Please cite and acknowledge the following works if you benefited from our works:
   year={2021},
   organization={IEEE}
 }
-
+```
+```
 @article{mustafa2023active,
   title={Active Learning with Deep Autoencoders for Seismic Facies Interpretation},
   author={Mustafa, Ahmad and AlRegib, Ghassan},
@@ -59,6 +60,7 @@ Please cite and acknowledge the following works if you benefited from our works:
   year={2023},
   publisher={Society of Exploration Geophysicists}
 }
+```
 
 ## Contact
 For help and or other issues related to codes, you may reach out to the authors, Ahmad Mustafa (ahmadmustafa.am@gmail.com) or Ghassan AlRegib (alregib@gatech.edu).
