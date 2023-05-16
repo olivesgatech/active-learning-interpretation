@@ -15,6 +15,10 @@ Machine learning-assisted seismic interpretation tasks require large quantities 
 1. Clone the repository to a local directory on your PC and install the necessary anaconda dependencies.
 ```bash
 git clone https://github.com/olivesgatech/active-learning-interpretation.git
+cd active-learning-interpretation
+conda create --name active-learn python=3.7.4
+conda activate active-learn
+conda install --file requirements.txt
 ```
 
 2. Download a fully labeled seismic dataset that comes with an amplitude volume and a corresponding label volume containing the interpretations. The paper uses the dataset introduced by the authors in [3]. The data can be downloaded [here](https://github.com/olivesgatech/facies_classification_benchmark). If you choose to use a different dataset, make sure the data axes are oriented in one of the two orders for, [crossline, inline, time/depth] or [inline, crossline, time/depth], for both the seismic and label arrays.
